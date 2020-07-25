@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "mystical-tensor-283408",
+  "private_key_id": "ad2e2170789af291ff4096e282eb93162b9691a4",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDbNDdc9TEh5iy/\nC3/sDw5K1lscZ47lh/uKhZaqNuXhIUIUz/TWkDaNhiIEm1QUTAewAfLb2n+aozy1\nSvwirozT6FHCcuQSmQ32SXel//01J3QgVPb6WXySxfRZvG1qBimBZWrDQwB3CjLl\naTSjfE7F4I5FG9Ztg55daBvAICngFmsAFu8NkaHJueO+2Oy1bNudB8IFqUWGL//M\n7LMlYG84kRX0BnTlrkQNPCJ4fM4kPFZOopZJrHrUJXFzlESovy0MScDCcVDrSMAZ\n1UENtGoLwair50BG3U6U/8qkUDiDK6TgyIbbl8qNTNBkXK6spqN12pMC0WIsO2A2\nAZ+hGDEfAgMBAAECggEABo4EVgTh2rwJris+ldqKEV7vcqUo/65vAos7GTB6EEm7\nXS/YwO38fWcCr0qxGzoMWemEHcZXz7WTkIsmwYr2HIr22ECGs4THlWFIsQiQxZ0v\n6PIKXNao+Vu156qYRsQwS25rxCSpREmO8/LkeR7QTxhcv9lKFgYm0OE6QPwcWAHc\njGPEZFflLDXMk8J8VQDF/Wyi3F37yJbuqHiGGyxCZa+0aW4JM04Ch+0wzVdhN6TM\ne1P1spf9FRdDQrxa1DLx+LJDItmk9NzEz8nVz63ej3FSYqOtmhjFB25pQmXfrcI7\n5VJqH24oBKGTNXIo5Hd22vdzO9j65iTvvXNQvPJpTQKBgQDwLTdV1woop63q4q5E\n6VqwulipPjzXcyEPNzByc26HP3+LpZKM++NBMQTR8G3KF1EBIoXdDCMEisTTnsYO\nvNM+yz60JTyzoyJXAT7FncOmzbVZcTB35CyfEEIH8CragitspIiNio5gcz0O9Q68\n6m2f6h/iTNFyf2Wpuj7W3iP0cwKBgQDppUdCwAJz4wGv8/+fVi9I2prMGSr+Sdva\nQnw7zL3n7AVqQVw3OD0D5iiab27KHrKMzBWfZcTIHc2h/WjKBy4sq3oI5BRhj5jv\nu4uGc7DPNINOu9HXtLqCkd7FThHVy/nmcijsvtbJinMsCLQ0sMBdAgTge5+Xxf7X\nIHqhMJARpQKBgEdWhtseVkwhEg10ayLY1TEtCGysqdGsxqMIV4GHO8s8VxwZf+AU\naTnR34akDVg7eLoHkQ9JLZWJylC5FkcGWxCJugQ0E0WgLPD+07BK3fRLoZQBhM33\nnjFY2OQWuAPTKibI8C5qe0O2tuoca9Y9I3aeSf4jpwqFQKMbSNL1hGR1AoGAP4iX\nCRqnUBXxloQWBaDs+LWhFFDftQgmhYJAwA4bsd4nVs5xIf7j8JR8hAo7KTERwmGY\nm6CT0wrvqNX80bsEHld+tr42oJTotH/eH/CDqsSP1DAUjsBxWyIJXsOs6+MskDKI\n2F/IjkNcsCOpxQ4vMNtkshpLuny3oI4PapeHBZUCgYEAjQYuwrdv1Svrq6bhIy3n\nxORthcfF0y+7R+jXDmCeUMueNR/dvy00OtuAAAeEGiMjAWfDfRi5IiZQEeeupWBm\n22wzkgldEaiYGRzYfTEiKhMkTJOFMoLm5Hn8uie+FrCjTl+q081vVHgJi5pRjehA\ngsaZ4++GqqUkcshiX0eJg/Y=\n-----END PRIVATE KEY-----\n",
+  "client_email": "vision-api-token@mystical-tensor-283408.iam.gserviceaccount.com",
+  "client_id": "112420874416816788982",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/vision-api-token%40mystical-tensor-283408.iam.gserviceaccount.com"
+}
