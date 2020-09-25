@@ -1,16 +1,12 @@
 import PySimpleGUI as sg
 import requests
-import json
-import urllib.parse
-import time
-import sys
-import os
-import io
-from bs4 import BeautifulSoup
 from selenium.webdriver import Chrome
 from selenium import webdriver
+import sys
+import os
 from google.cloud import vision
 from google.cloud.vision import types
+from bs4 import BeautifulSoup
 
 driver = Chrome()
 driver = webdriver.Chrome()
@@ -33,188 +29,81 @@ sg.theme_list()
 while True:
     event, values = window.read()
     if event in (None, 'Execute'):
-        image_url = ""
-        response = ""
-        full_surname = ""
-        split_by_newline = ""
-        split_by_word = ""
-        full_address = ""
-
-        os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r'vision_api_token.json'
-
-        path = '/Users/rhysthomas/Downloads/chromedriver'
-        sys.path.append(path)
-
-        def login():     
-            elem = driver.find_element_by_xpath("//*")
-            source_code = elem.get_attribute("outerHTML")
-            soup = BeautifulSoup(source_code, 'html.parser')
-            img = soup.find(id="1")
-            global image_url
-            image_url = img.get('src')
-
-        def detect_document_uri():
-            # Detects document features in the file located in Cloud Storage.
-            from google.cloud import vision
-            client = vision.ImageAnnotatorClient()
-            image = vision.types.Image()
-            image.source.image_uri = image_url
-            global response
-            response = client.document_text_detection(image=image)
-
-            if response.error.message:
-                raise Exception(
-                    '{}\nFor more info on error messages, check: '
-                    'https://cloud.google.com/apis/design/errors'.format(
-                        response.error.message))
-            # Use the print below to debug the response from Google Vision 
-            # full_text = response.text_annotations[0].description
-            # print(full_text)
         
 
-        def read_image():
-            full_text = response.text_annotations[0].description
-            lowercase = full_text.lower()
-            global split_by_newline
-            split_by_newline = lowercase.split("\n")
-            global split_by_word
-            split_by_word = lowercase.split()
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r'vision_api_token.json'
+path = '/Users/rhysthomas/Downloads/chromedriver'
+sys.path.append(path)
+driver = Chrome()
+driver = webdriver.Chrome()
 
-        def surname_extraction():
-            # Surname extraction
-            surname_index = split_by_newline.index("family name")
-            first_name_index = split_by_newline.index("first names")
-            i = surname_index + 1
-            array = []
-            while i < first_name_index:
-                array.append(split_by_newline[i])
-                i = i+1
-            global full_surname
-            full_surname = " ".join(array).title()
-            print(full_surname)
+def script():
+    def get_image():
+        driver.get("file:///Users\\rhysthomas\\Documents\\Tests\\ocr\\tests\\index.html")
+        elem = driver.find_element_by_xpath("//*")
+        source_code = elem.get_attribute("outerHTML")
+        soup = BeautifulSoup(source_code, 'html.parser')
+        global image_url
+        image_url = soup.img.get('src')
 
 
-        def first_names_extraction():
-            # First names extractions
-            first_names_index = split_by_word.index("names")
-            dob_index = split_by_word.index("occupation")
-            i = first_names_index + 1
-            array = []
-            while i < dob_index:
-                replaced = split_by_word[i].replace(".", "")
-                array.append(replaced)
-                i = i+1
-            no_integers = [x for x in array if not (
-                x.isdigit() or x[0] == '-' and x[1:].isdigit())]
-            print(no_integers)
-            global full_first_names
-            full_first_names = " ".join(no_integers).title()
-            print(full_first_names)
+    def detect_document_uri():
+        client = vision.ImageAnnotatorClient()
+        image = vision.types.Image()
+        image.source.image_uri = image_url
+        response = client.document_text_detection(image=image)
+        if response.error.message:
+            raise Exception(
+                '{}\nFor more info on error messages, check: '
+                'https://cloud.google.com/apis/design/errors'.format(
+                    response.error.message))
+        global full_text
+        full_text = response.text_annotations[0].description
+        
+
+    def read_image():
+        lowercase = full_text.lower()
+        global split_by_newline
+        split_by_newline = lowercase.split("\n")
+        global split_by_word
+        split_by_word = lowercase.split()
 
 
-        def dob_extraction():
-            # DOB extraction
-            dob_index = split_by_newline.index("date of birth")
-            occupation_index = split_by_newline.index("mobile phone")
-            i = dob_index + 1
-            array = []
-            while i < occupation_index:
-                array.append(split_by_newline[i])
-                i = i+1
-            global full_dob
-            full_dob = " ".join(array)
-            print(full_dob)
+    def data_extractor(array_type, first_word, second_word, added_index, id):
+        if second_word:
+            x = array_type.index(first_word)
+            y = array_type.index(second_word)
+            i = x + added_index
+            arr = []
+            while i < y:
+                arr.append(array_type[i])
+                i = i + 1
+            z = " ".join(arr)
+            field = driver.find_element_by_id(id)
+            field.send_keys(z)
+        else:
+            x = array_type.index(first_word)
+            i = x + added_index
+            arr = []
+            arr.append(array_type[i])
+            z = " ".join(arr)
+            field = driver.find_element_by_id(id)
+            field.send_keys(z)
 
 
-        def occupation_extraction():
-            # Occupation extraction
-            occupation_index = split_by_word.index("occupation")
-            mobile_index = split_by_word.index("date")
-            i = occupation_index + 1
-            array = []
-            while i < mobile_index:
-                array.append(split_by_word[i])
-                i = i+1
-            global full_occupation
-            full_occupation = " ".join(array).title()
-            print(full_occupation)
+    get_image()
+    detect_document_uri()
+    read_image()
+    data_extractor(split_by_newline, "family name", "first names", 1, "surname")
+    data_extractor(split_by_word, "names", "occupation", 1, "fname")
+    data_extractor(split_by_word, "occupation", "date", 1, "occupation")
+    data_extractor(split_by_newline, "number", False, 1, "mobile")
+    data_extractor(split_by_word, "address", False, -3, "other")
+    data_extractor(split_by_newline, "email address", "current nz", 1, "email")
+    data_extractor(split_by_newline, "zealand address",  "lived here under one month?", 2, "address")
 
 
-        def mobile_extraction():
-            # Mobile extraction
-            mobile_index = split_by_newline.index("number")
-            global full_mobile
-            full_mobile = split_by_newline[mobile_index + 1]
-            print(full_mobile)
-
-
-        def other_phone_extraction():
-            # Other phone number extraction
-            other_phone_index = split_by_word.index("number")
-            global full_other_phone
-            full_other_phone = split_by_word[other_phone_index + 4]
-            print(full_other_phone)
-
-
-        def email_extraction():
-            # Email extraction
-            email_index = split_by_newline.index("email address")
-            address_index = split_by_newline.index("current nz")
-            i = email_index + 1
-            array = []
-            while i < address_index:
-                array.append(split_by_newline[i])
-                i = i+1
-            global full_email
-            full_email = "".join(array)
-            print(full_email)
-
-
-        def address_extraction():
-            # Address extraction
-            address_index = split_by_word.index("home")
-            end_of_address_index = split_by_word.index("lived")
-            i = address_index + 2
-            array = []
-            while i < end_of_address_index:
-                array.append(split_by_word[i])
-                i = i+1
-            global full_address
-            full_address = " ".join(array)
-            print(full_address)
-
-        def find_mike_elements():
-            surname = driver.find_element_by_id("surname")
-            surname.send_keys(full_surname)
-            first_name = driver.find_element_by_id("fname")
-            first_name.send_keys(full_first_names)
-            # dob = driver.find_elements_by_id("dob")
-            # dob.send_keys(full_dob)
-            occupation = driver.find_element_by_id("occupation")
-            occupation.send_keys(full_occupation)
-            mobile_number = driver.find_element_by_id("mobile")
-            mobile_number.send_keys(full_mobile)
-            other_number = driver.find_element_by_id("other")
-            other_number.send_keys(full_other_phone)
-            email = driver.find_element_by_id("email")
-            email.send_keys(full_email)
-            address = driver.find_element_by_id("address")
-            address.send_keys(full_address)
-
-        def full_process():
-            login()
-            detect_document_uri()
-            read_image()
-            surname_extraction()
-            first_names_extraction()
-            occupation_extraction()
-            mobile_extraction()
-            other_phone_extraction()
-            email_extraction()
-            address_extraction()
-            find_mike_elements()
-
-        full_process()
+script()
     if event in (None, 'Close software'):  # if user closes window or clicks cancel
         break
 
