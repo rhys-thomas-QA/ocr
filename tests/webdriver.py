@@ -19,14 +19,18 @@ def script():
         elem = driver.find_element_by_xpath("//*")
         source_code = elem.get_attribute("outerHTML")
         soup = BeautifulSoup(source_code, 'html.parser')
-        global image_url
-        image_url = soup.img.get('src')
+        image_array = soup.find_all('img')
+        global image_link_array
+        image_link_array = []
+        for x in image_array:
+            image_url = x.get('src')
+            image_link_array.append(image_url)
 
 
-    def detect_document_uri():
+    def detect_document_uri(x):
         client = vision.ImageAnnotatorClient()
         image = vision.types.Image()
-        image.source.image_uri = image_url
+        image.source.image_uri = image_link_array[x]
         response = client.document_text_detection(image=image)
         if response.error.message:
             raise Exception(
@@ -36,7 +40,7 @@ def script():
         global full_text
         full_text = response.text_annotations[0].description
         
-
+    # This function converts the API response to 2 different arrays which are split by each new line or by individual word
     def read_image():
         lowercase = full_text.lower()
         global split_by_newline
@@ -68,8 +72,13 @@ def script():
 
 
     get_image()
-    detect_document_uri()
+    detect_document_uri(0)
     read_image()
+    # If the 2nd page of the form comes first on the webage, this loop redos the text conversion on the first page
+    if split_by_newline[0] == "step 2a":
+        detect_document_uri(1)
+        read_image()
+
     data_extractor(split_by_newline, "family name", "first names", 1, "surname")
     data_extractor(split_by_word, "names", "occupation", 1, "fname")
     data_extractor(split_by_word, "occupation", "date", 1, "occupation")
@@ -77,6 +86,6 @@ def script():
     data_extractor(split_by_word, "address", False, -3, "other")
     data_extractor(split_by_newline, "email address", "current nz", 1, "email")
     data_extractor(split_by_newline, "zealand address",  "lived here under one month?", 2, "address")
-
-
+        
+            
 script()
