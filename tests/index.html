@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
-    <title>HTML Forms</title>
-  </head>
-  <body>
-    <section id="overlay">
-      <hr>
-      <!--Add your code below-->
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+  <title>HTML Forms</title>
+  <script type="text/javascript" src="script.js"></script>
+</head>
+
+<body>
+  <section id="overlay">
+    <titles>
       <!--Title Radio Buttons-->
       <input type="radio" id="Mr" name="title" value="Mr">
       <label for="Mr">Mr</label>
@@ -21,34 +23,38 @@
       <label for="Ms">Ms</label>
       <input type="radio" id="Mx" name="title" value="Mx">
       <label for="Mx">Mx</label><br>
-      
-      <!--Names Text Inputs-->
-      <label for="surname">Last names:</label>
+    </titles>
+    <text_container>
+      <label for="surname">Last names:</label><br>
+      <label for="fname">First name:</label><br>
+      <label for="dob">Date of Birth:</label><br>
+      <label for="occupation">Occupation:</label><br>
+      <label for="mobile">Mobile:</label><br>
+      <label for="other">Other Phone Number:</label><br>
+      <label for="email">Email:</label><br>
+      <label for="address">Address:</label><br>
+    </text_container>
+    <input_container>
       <input type="text" id="surname" name="surname"><br>
-      <label for="fname">First name:</label>
       <input type="text" id="fname" name="fname"><br>
-      <!--DOB Input-->
-      <label for="dob">Date of Birth:</label>
       <input type="number" id="dob" name="dob"><br>
-      <!--Occupation Input-->
-      <label for="occupation">Occupation:</label>
       <input type="text" id="occupation" name="occupation"><br>
-      <!--Mobile Input-->
-      <label for="mobile">Mobile:</label>
       <input type="text" id="mobile" name="mobile"><br>
-      <!--Other Phone Input-->
-      <label for="dob">Other Phone Number:</label>
       <input type="text" id="other" name="other"><br>
-      <!--Email Input-->
-      <label for="dob">Email:</label>
       <input type="text" id="email" name="email"><br>
-      <!--Address Input-->
-      <label for="address">Address:</label>
       <input type="text" id="address" name="address"><br>
+    </input_container>
+    <div>
+      <button onclick="integratedScript()">Click me!</button>
+      <!-- <script src="script.js"></script> -->
+      <images>
+        <!-- <img src="https://res.cloudinary.com/dohldvzge/image/upload/v1595125350/enrolment-form-2_hypqds.jpg"
+        alt="handwriting example 1" id = "2"> -->
+      <img src="https://res.cloudinary.com/dohldvzge/image/upload/v1595211031/20072020134136-0001-1_omlzbi.jpg"
+        alt="handwriting example 2" id = "1">
+      </images>
+    </div>
+  </section>
+</body>
 
-      <img src="https://res.cloudinary.com/dohldvzge/image/upload/v1595211031/20072020134136-0001-1_omlzbi.jpg" alt="handwriting example">
-      <img src="https://res.cloudinary.com/dohldvzge/image/upload/v1595125350/enrolment-form-2_hypqds.jpg" alt="handwriting example">
-
-    </section>
-  </body>
 </html>

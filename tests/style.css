@@ -1,0 +1,8 @@
+body {background-color: powderblue;}
+    h1   {color: blue;}
+    p    {color: red;}
+    img  {float: right; width: 33.33%; height: 750; border: 50; border-style: solid; border-color: black;}
+    images {width: 40.66%;}
+    text_container {float: left; width: 16.66%; font-size: 17px;}
+    input_container{width: 16.66%;}
+    titles{width: 33.33%;}
