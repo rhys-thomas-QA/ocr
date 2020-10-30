@@ -14,5 +14,5 @@ Click execute to run the handwriting recognition and transfer the data to the fo
 
 ## Setting up of Lambda and service
 Copy your API key into the folder "deployment package" and zip the entire contents of the folder (do not zip the folder itself, select all inside and zip).
-This is the deployment package for your AWS Lambda and can now be connected to an API via the AWS API gateway. For any further info read my blog post about this project. 
+This is the deployment package for your AWS Lambda and can now be connected to an API via the AWS API gateway. For any further info read my blog post about this project https://rhysthomas2595.medium.com/my-journey-with-optical-character-recognition-bfe380f0d9fe
 
