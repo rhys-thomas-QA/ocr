@@ -8,14 +8,6 @@ os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r'vision_api_token.json'
 
 
 def lambda_handler(event, context):
-    # def test():
-    #     thing = event["key"]
-    #     print("KAJSHDKJAHSD")
-    #     return {
-    #         'statusCode': 200,
-    #         'body': thing
-    #     }
-    # test()
     def detect_document_uri():
         client = vision.ImageAnnotatorClient()
         image = vision.types.Image()
@@ -40,26 +32,26 @@ def lambda_handler(event, context):
 
     def data_extractor(array_type, first_word, second_word, added_index):
         if second_word:
-            x = array_type.index(first_word)
-            y = array_type.index(second_word)
-            i = x + added_index
+            first_word_index = array_type.index(first_word)
+            second_word_index = array_type.index(second_word)
+            i = first_word_index + added_index
             arr = []
-            while i < y:
+            while i < second_word_index:
                 arr.append(array_type[i])
                 i = i + 1
-            z = " ".join(arr)
-            all_data_array.append(z)
+            extracted_words = " ".join(arr)
+            all_data_array.append(extracted_words)
         else:
-            x = array_type.index(first_word)
-            i = x + added_index
+            first_word_index = array_type.index(first_word)
+            i = first_word_index + added_index
             arr = []
             arr.append(array_type[i])
-            z = " ".join(arr)
-            all_data_array.append(z)
+            extracted_words = " ".join(arr)
+            all_data_array.append(extracted_words)
 
     detect_document_uri()
     read_image()
-    # TODO add in contingency for if the second form is scanned, as this will produce a 400 error
+    # TODO add in contingency for if the second form is scanned first, as this will produce a 400 error
     data_extractor(split_by_newline, "family name",
                    "first names", 1)
     data_extractor(split_by_word, "names", "occupation", 1)
