@@ -29,6 +29,7 @@ sg.theme_list()
 while True:
     event, values = window.read()
     if event in (None, 'Execute'):
+<<<<<<< HEAD
         
 
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r'vision_api_token.json'
@@ -104,6 +105,7 @@ def script():
 
 
 script()
+
     if event in (None, 'Close software'):  # if user closes window or clicks cancel
         break
 

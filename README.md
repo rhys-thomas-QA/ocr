@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # OCR
 Handwriting processor using Google Vision Optical Character Recognition
 
@@ -5,11 +6,6 @@ Handwriting processor using Google Vision Optical Character Recognition
 Open the index.html file in a browser and click the button. This will send an API request to a Lambda that handles the Google Vision request and returns all of the needed values. 
 
 ## Setup
-
-Download latest version of Python and pip.
-
-Make sure your terminal is pointing to the newest version of Python
-
 Run `pip3 install google.cloud.vision`, `pip3 install google.cloud`, `pip3 install pysimplegui`, `pip3 install selenium`, `pip3 install beautifulsoup4`.
 Create a Google Cloud Platform account and download an API key to use the Vision OCR. Place this in the root folder. 
 
@@ -20,3 +16,4 @@ Click execute to run the handwriting recognition and transfer the data to the fo
 ## Setting up of Lambda and service
 Copy your API key into the folder "deployment package" and zip the entire contents of the folder (do not zip the folder itself, select all inside and zip).
 This is the deployment package for your AWS Lambda and can now be connected to an API via the AWS API gateway. For any further info read my blog post about this project. 
+

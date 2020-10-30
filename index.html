@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+  <title>HTML Forms</title>
+  <!-- <script src="script.js"></script> -->
+</head>
+
+<body>
+  <section id="overlay">
+    <titles>
+      <!--Title Radio Buttons-->
+      <input type="radio" id="Mr" name="title" value="Mr">
+      <label for="Mr">Mr</label>
+      <input type="radio" id="Mrs" name="title" value="Mrs">
+      <label for="Mrs">Mrs</label>
+      <input type="radio" id="Miss" name="title" value="Miss">
+      <label for="Miss">Miss</label>
+      <input type="radio" id="Ms" name="title" value="Ms">
+      <label for="Ms">Ms</label>
+      <input type="radio" id="Mx" name="title" value="Mx">
+      <label for="Mx">Mx</label><br>
+    </titles>
+    <text_container>
+      <label for="surname">Last names:</label><br>
+      <label for="fname">First name:</label><br>
+      <label for="dob">Date of Birth:</label><br>
+      <label for="occupation">Occupation:</label><br>
+      <label for="mobile">Mobile:</label><br>
+      <label for="other">Other Phone Number:</label><br>
+      <label for="email">Email:</label><br>
+      <label for="address">Address:</label><br>
+    </text_container>
+    <input_container>
+      <input type="text" id="surname" name="surname"><br>
+      <input type="text" id="fname" name="fname"><br>
+      <input type="number" id="dob" name="dob"><br>
+      <input type="text" id="occupation" name="occupation"><br>
+      <input type="text" id="mobile" name="mobile"><br>
+      <input type="text" id="other" name="other"><br>
+      <input type="text" id="email" name="email"><br>
+      <input type="text" id="address" name="address"><br>
+    </input_container>
+    <div>
+      <script type="text/javascript">
+        function x() {
+            let element = document.getElementById("1").src
+            const xhr = new XMLHttpRequest();
+            let body = JSON.stringify({ "image_url": element })
+            let url = "https://ayp9zkijdh.execute-api.ap-southeast-2.amazonaws.com/Test/"
+            xhr.open('POST', url)
+            xhr.send(body)
+            xhr.onload = function () {
+              if (xhr.readyState === xhr.DONE) {
+                if (xhr.status === 200) {
+                  let response = JSON.parse(xhr.response);
+                  console.log(response)
+                  document.getElementById("surname").value = response.response[0]
+                  document.getElementById("fname").value = response.response[1]
+                  document.getElementById("occupation").value = response.response[2]
+                  document.getElementById("mobile").value = response.response[3]
+                  document.getElementById("other").value = response.response[4]
+                  document.getElementById("email").value = response.response[5]
+                  document.getElementById("address").value = response.response[6]
+                }
+              }
+          }
+        }
+      </script>
+      <button onclick="x()">Click me!</button>
+
+      <images>
+        <img src="https://res.cloudinary.com/dohldvzge/image/upload/v1595125350/enrolment-form-2_hypqds.jpg"
+          alt="handwriting example 2" id="2">
+        <img src="https://res.cloudinary.com/dohldvzge/image/upload/v1595211031/20072020134136-0001-1_omlzbi.jpg"
+          alt="handwriting example 1" id="1">
+      </images>
+    </div>
+  </section>
+</body>
+
+</html>
